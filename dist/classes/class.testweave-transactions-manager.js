@@ -118,15 +118,15 @@ var TestWeaveTransactionsManager = /** @class */ (function () {
      */
     TestWeaveTransactionsManager.prototype.getGet = function (endpoint, config) {
         return __awaiter(this, void 0, void 0, function () {
-            var request, response, error_2;
+            var request, config_1, response, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         request = this._arweave.api.request();
-                        // console.log(request);
-                        request.defaults.baseURL = 'http://localhost';
-                        return [4 /*yield*/, request.get(endpoint, config)];
+                        config_1 = this._arweave.api.config;
+                        request.defaults.baseURL = config_1.protocol + "://" + config_1.host + ":" + config_1.port;
+                        return [4 /*yield*/, request.get(endpoint, config_1)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response];
@@ -149,14 +149,15 @@ var TestWeaveTransactionsManager = /** @class */ (function () {
     // eslint-disable-next-line @typescript-eslint/ban-types
     body, config) {
         return __awaiter(this, void 0, void 0, function () {
-            var request, response, id, error_3;
+            var request, config_2, response, id, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
                         request = this._arweave.api.request();
                         if (endpoint === 'graphql') {
-                            request.defaults.baseURL = 'http://localhost';
+                            config_2 = this._arweave.api.config;
+                            request.defaults.baseURL = config_2.protocol + "://" + config_2.host + ":3000";
                         }
                         return [4 /*yield*/, request.post(endpoint, body, config)];
                     case 1:
