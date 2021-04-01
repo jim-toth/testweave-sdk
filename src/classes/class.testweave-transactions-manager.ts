@@ -66,7 +66,8 @@ export default class TestWeaveTransactionsManager implements ITestWeaveTransacti
       // get the request
       const request = this._arweave.api.request();
       // console.log(request);
-      request.defaults.baseURL = 'http://localhost';
+      const config = this._arweave.api.config
+      request.defaults.baseURL = `${config.protocol}://${config.host}:${config.port}`
       const response = await request.get(endpoint, config);
       return response;
     } catch (error) {
@@ -91,7 +92,8 @@ export default class TestWeaveTransactionsManager implements ITestWeaveTransacti
       // get the request
       const request = this._arweave.api.request();
       if (endpoint === 'graphql') {
-        request.defaults.baseURL = 'http://localhost';
+        const config = this._arweave.api.config
+        request.defaults.baseURL = `${config.protocol}://${config.host}:3000`
       }
       const response = await request.post(endpoint, body, config);
       if (endpoint === 'tx') {
